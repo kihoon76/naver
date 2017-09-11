@@ -1,0 +1,64 @@
+<body>
+<form>
+<div class="form-group">
+        <label class="col-md-2 control-label">apikey</label>
+        <div class="col-md-10  inputGroupContainer">
+          <div class="input-group">
+            <input id="apikey" name="apikey" placeholder="API_KEY" class="form-control"  type="text">
+          </div>
+        </div>
+</div>
+<div class="form-group">
+        <label class="col-md-2 control-label">secret</label>
+        <div class="col-md-10  inputGroupContainer">
+          <div class="input-group">
+            <input id="secret" name="secret" placeholder="secret" class="form-control"  type="text">
+          </div>
+        </div>
+</div>
+<div class="form-group">
+        <label class="col-md-2 control-label">lat</label>
+        <div class="col-md-10  inputGroupContainer">
+          <div class="input-group">
+            <input id="lat" name="lat" placeholder="lat" class="form-control"  type="text">
+          </div>
+        </div>
+</div>
+<div class="form-group">
+        <label class="col-md-2 control-label">lng</label>
+        <div class="col-md-10  inputGroupContainer">
+          <div class="input-group">
+            <input id="lng" name="lng" placeholder="lng" class="form-control"  type="text">
+          </div>
+        </div>
+</div>
+ <div class="form-group">
+        <label class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+          <button id="btnSend" type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+        </div>
+      </div>
+      
+</form>      
+<div>result xml</div>
+<div id="dvResult" class="container-fluid"></div>
+<script type="text/javascript">
+	$('#btnSend').on('click', function(e) {
+		e.preventDefault();
+		
+		$.ajax({
+			 type: 'GET', 
+			 dataType: 'text',
+			 url: 'http://hotplace.ddns.net:10000/api/naver',
+			 data: 'key='+$('#apikey').val()+'&secret='+$('#secret').val()+'&lat='+$('#lat').val()+'&lng='+$('#lng').val(),
+			 success: function(data) {
+				$('#dvResult').text(data); 
+			 },
+			 error: function() {
+				 
+			 }
+		});
+		
+	})
+</script>
+</body>
