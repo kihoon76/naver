@@ -1,17 +1,16 @@
 /**
  * 
  */
+ var env		= process.env.NODE_ENV || 'local';
  var express   	= require('express'),
  	 fs		    = require('fs'),
  	 handlebars	= require('express3-handlebars'),
  	 bodyParser	= require('body-parser'),
  	 path		= require('path'),
+ 	 config		= require('./lib/config.' + env),
  	 log4js		= require('log4js');
 
- log4js.configure({
-	appenders: {naver: {type:'console'}},
-	categories: {default: {appenders: ['naver'], level: 'debug'}}
- });
+ log4js.configure(config.log);
 
  var app 		= express(),
 	viewsPath	= path.join(__dirname, 'views'),
