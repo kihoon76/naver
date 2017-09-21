@@ -34,11 +34,10 @@ router.use(function preProcess(req, res, next) {
 router.get('/myip', function(req, res) {
 
 	// Print the result
-	res.render('myip', {address: server.address().address});
+	res.render('myip', {address: '106.253.61.59'});
 });
 
 module.exports = function(_server) {
-	console.log(_server)
 	server = _server;
 	return router;
 }
