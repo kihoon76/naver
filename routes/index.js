@@ -56,4 +56,10 @@ router.get('/api/naver', function(req, res) {
 		
 });
 
+router.get('/api/myip', function(req, res) {
+
+	// Print the result
+	res.render('myip', {address: '106.253.61.59'});
+});
+
 module.exports = router;
