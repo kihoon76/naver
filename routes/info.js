@@ -37,6 +37,7 @@ router.get('/myip', function(req, res) {
 	// Print the result
 	nslookup('hotplace.ddns.net')
 	.server('8.8.8.8')
+	.type('a')
 	.timeout(10 * 1000)
 	.end(function(err, addrs) {
 		var address = null;
@@ -44,6 +45,7 @@ router.get('/myip', function(req, res) {
 			address = '106.253.61.59';
 		}
 		else {
+			console.log(addrs)
 			address = addrs[0];
 		}
 		
