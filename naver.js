@@ -40,7 +40,8 @@
  	res.status(404).render('not-found');
  });
  
- app.listen(app.get('port'), function() {
+ var server = app.listen(app.get('port'), function() {
  	logger.debug('Listening on port ' + app.get('port'));
+ 	app.use('/info', require('./routes/info')(server));
  });
  
