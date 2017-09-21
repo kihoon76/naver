@@ -1,5 +1,6 @@
 var express  = require('express'),
 	request	 = require('request'),
+	nslookup = require('nslookup'),
 	log4js	 = require('log4js');
 
 var router   = express.Router();
@@ -34,10 +35,21 @@ router.use(function preProcess(req, res, next) {
 router.get('/myip', function(req, res) {
 
 	// Print the result
-	res.render('myip', {address: '106.253.61.59'});
+	nslookup('hotplace.ddns.net')
+	.server('8.8.8.8')
+	.timeout(10 * 1000)
+	.end(function(err, addrs) {
+		var address = null;
+		if(err) {
+			address = '106.253.61.59';
+		}
+		else {
+			address = addrs[0];
+		}
+		
+		res.render('myip', {address: address});
+	});
+	
 });
 
-module.exports = function(_server) {
-	server = _server;
-	return router;
-}
+module.exports = router;

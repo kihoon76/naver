@@ -31,7 +31,7 @@
  app.use(express.static(path.join(__dirname, 'public')));
  app.use(bodyParser.urlencoded({ extended: true}));
  app.use('/', require('./routes/index'));
- 
+ app.use('/info', require('./routes/info'));
  app.use(function(err, req, res, next) {
  	res.status(500).render('error');
  });
@@ -42,6 +42,5 @@
  
  var server = app.listen(app.get('port'), function() {
  	logger.debug('Listening on port ' + app.get('port'));
- 	app.use('/info', require('./routes/info')(server));
  });
  
